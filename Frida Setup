@@ -1,0 +1,26 @@
+Frida Setup
+
+1. Install Frida on Kali Linux
+- pip install frida frida-tools
+- frida --version
+
+2. Install & Run Frida Server on Android
+- adb shell getprop ro.product.cpu.abi  (Check android architecture)
+-  https://github.com/frida/frida/releases
+- wget https://github.com/frida/frida/releases/download/16.7.0/frida-server-16.7.0-android-arm64.xz  (Download)
+- unxz frida-server-16.7.0-android-arm64.xz (Extracting)
+- chmod +x frida-server-16.0.0-android-arm64 (Give Premissions)
+- adb push frida-server-16.0.0-android-arm64 /data/local/tmp/frida-server (Move the file to android device)
+
+3. Run Frida Server on Android
+- adb shell (Access the shell)
+- su (go to root user)
+- cd /data/local/tmp (go to the destination)
+- ./frida-server (Excecute..)
+
+4. Attach to the Target App
+- adb shell pm list packages | grep targetapp
+- adb shell pm list packages (Lists all apps)
+- frida-ps -U (To get PID)
+- go to frida codeshare download corresponding codes
+- frida -U -p 12429 -l code.js
